@@ -1,0 +1,156 @@
+body {
+    margin: 0 15% 0 15%;
+    font-size: 14px;
+    color: rgb(36, 36, 36);
+}
+
+h2 { text-align: center; }
+
+img {
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+p { margin-top: 0; }
+
+button:hover { cursor: pointer; }
+
+hr { border: 2px solid rgb(36, 36, 36); }
+
+#extension-info { 
+    text-align: center; 
+    margin-bottom: 0;
+}
+
+
+/* *** TABLE *** */
+table { 
+    text-align: center;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0 auto;
+    table-layout: fixed;
+    margin-bottom: 25px;
+}
+
+td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+th {
+  overflow: hidden;
+  font-size: 11px;
+}
+
+tr { font-size: 12px; }
+
+tr:hover {
+    background-color: #f2f2f2;
+    transition: 0.1s all;
+}
+
+thead tr:hover {
+    background-color: white;
+    transition: none;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    padding: 5px;
+}
+
+/* set each individual column width and equal to 100 */
+th:nth-child(1) { width: 35%; }
+th:nth-child(2) { width: 35%; }
+th:nth-child(3) { width: 5%; }
+th:nth-child(4) { width: 5%; }
+th:nth-child(5) { width: 5%; }
+th:nth-child(6) { width: 15%; }
+
+.go-button, .quit-button {
+    width: 35px;
+    height: 25px;
+}
+
+.quit-button { font-size: 11px; } /* correct alignment in cell */
+
+.go-button { margin-right: 5px; }
+
+.go-button:after { content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==); }
+
+
+/* *** OPTIONS *** */
+input[type=number] {
+    width: 90%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: minmax(auto, 20%) minmax(auto, 20%) minmax(auto, 20%) minmax(auto, 20%) minmax(auto, 20%);
+    gap: 10px;
+}
+
+.grid-item {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 10px;
+    border: 1px solid rgb(104, 104, 104);
+    box-sizing: border-box;
+}
+
+details { margin-top: 20px; }
+
+details > summary {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+details > p { margin-left: 18px; }
+
+summary {
+    display: inline-block;
+    letter-spacing: -0.5px;
+}
+
+summary:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+summary:focus { outline: none; }
+
+.submit-buttons { margin-bottom: 25px; }
+
+.submit-buttons button { padding: 7px; }
+
+.blocked-urls:after {
+    color: red;
+    content: "*";
+    font-weight: bold;
+}
+
+.right-align { text-align: right; }
+
+#message {
+    font-weight: bold;
+    color: rgb(45, 167, 66);
+}
+
+#context-enabled { margin-left: 0; }
+
+
+/* VIEWPORTS */
+@media only screen and (max-width: 900px) {
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] { padding: 0; }
+}

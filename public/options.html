@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Page Refresher - Options</title>
+    <link rel="stylesheet" href="./src/css/options.css">
+</head>
+
+<body>
+
+    <img src="./src/img/banner.png">
+    <p id="extension-info">
+        Version: 0.1<br>
+        Author: Alex Nguyen<br>
+        Source Code: <a href="https://github.com/alexnguyennz/pagerefresher" target="_blank">https://github.com/alexnguyennz</a>
+    </p>
+
+    <div class="right-align">
+        <input type="checkbox" id="display-all-tabs">
+        <label for="display-all-tabs">Display all tab info</label>
+    </div>
+
+    <div>
+    <table id="reload-table">
+        <thead>
+            <th>Title</th>
+            <th>URL</th>
+            <th>Refresh Interval</th>
+            <th>Block Reloads</th>
+            <th>Bypass Cache</th>
+            <th>Actions</th>
+        </thead>
+
+        <tbody>
+        </tbody>
+    </table>
+    </div>
+
+    <hr>
+
+    <h2>Options</h2>
+
+        <details>
+            <summary>Set custom intervals</summary>
+            <p>Set commonly used interval/reload times. These will appear in the extension icon menu and the context menu.</p>
+        </details>
+        <div class="grid-container">
+            <div class="grid-item">
+                <strong>Interval One</strong><br>
+                <label for="intervalOne-minutes">Minutes: </label>
+                <label for="intervalOne-seconds">Seconds: </label>
+                <input type="number" id="intervalOne-minutes" name="interval" min="0" value="0" required>
+                <input type="number" id="intervalOne-seconds" name="interval" min="0" value="0" required>
+            </div>
+            
+            <div class="grid-item">
+                <strong>Interval Two</strong><br>
+                <label for="intervalTwo-minutes">Minutes: </label>
+                <label for="intervalTwo-seconds">Seconds: </label>
+                <input type="number" id="intervalTwo-minutes" name="interval" min="0" value="0" required>
+                <input type="number" id="intervalTwo-seconds" name="interval" min="0" value="0" required>  
+            </div>
+            <div class="grid-item">
+                <strong>Interval Three</strong><br>
+                <label for="intervalThree-minutes">Minutes: </label>
+                <label for="intervalThree-seconds">Seconds: </label>
+                <input type="number" id="intervalThree-minutes" name="interval" min="0" value="0" required>
+                <input type="number" id="intervalThree-seconds" name="interval" min="0" value="0" required>
+            </div>
+            <div class="grid-item">
+                <strong>Interval Four</strong><br>
+                <label for="intervalFour-minutes">Minutes: </label>
+                <label for="intervalFour-seconds">Seconds: </label>
+                <input type="number" id="intervalFour-minutes" name="interval" min="0" value="0" required>
+                <input type="number" id="intervalFour-seconds" name="interval" min="0" value="0" required>
+            </div>
+            <div class="grid-item">
+                <strong>Interval Five</strong><br>
+                <label for="intervalFive-minutes">Minutes: </label>
+                <label for="intervalFive-seconds">Seconds: </label>
+                <input type="number" id="intervalFive-minutes" name="interval" min="0" value="0" required>
+                <input type="number" id="intervalFive-seconds" name="interval" min="0" value="0" required>
+            </div>
+        </div>
+
+        <details>
+            <summary>Enable Page Refresher in context menu</summary>
+            <p>Enable or disable this extension in the context menu (right click).</p>
+        </details>
+        <p>
+            <input type="radio" id="context-enabled" name="context-option" value="On">
+            <label for="context-enabled">On</label>
+            <input type="radio" id="context-disabled" name="context-option" value="Off">
+            <label for="context-disabled">Off</label>
+        </p>
+
+        <p class="submit-buttons">
+            <button id="save-options">Save</button>
+            <button id="reset-options">Reset</button>
+            <span id="message"></span>
+        </p>
+
+        <hr>
+
+        <details>
+            <summary>Block auto reloading (per tab)</summary>
+            <p>Stop pages from auto refreshing. This can cause some pages to not function correctly. This option is disabled on pages that block this feature. Turning this option off will reload the tab.
+                <ul>
+                    <li class="blocked-urls">chrome://</li>
+                    <li class="blocked-urls">chrome-extension://</li>
+                    <li class="blocked-urls">https://chrome.google.com/webstore/</li>
+                </ul>
+            </p>
+        </details>
+
+        <details>
+            <summary>Bypass local cache (per tab)</summary>
+            <p>Bypasses the local cache upon each reload. This ensures you're always browsing the latest version of the page. This option only works with this extension's reloading process.</p>
+        </details>
+
+<script type="module" src="./src/js/options.js"></script>
+
+</body>
+
+</html>
