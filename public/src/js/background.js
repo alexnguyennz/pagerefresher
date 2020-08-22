@@ -142,6 +142,43 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 // *** FUNCTIONS *** //
 // ***************** //
 
+let contextMenuLoaded = false; // track context menu state (on or off); set to false by default
+let contextInterval; // track state of context interval value
+
+// *** Remove any existing context menu and create context menu. *** //
+function addContextMenu() {
+
+    chrome.contextMenus.removeAll(() => {
+        chrome.storage.sync.get(["intervalOne", "intervalTwo", "intervalThree", "intervalFour", "intervalFive"], items => {
+
+            contextInterval = items.intervalOne;
+
+            const definedIntervals = { intervalOne: items.intervalOne, intervalTwo: items.intervalTwo, intervalThree: items.intervalThree, intervalFour: items.intervalFour, intervalFive: items.intervalFive };
+
+            chrome.contextMenus.create({ "contexts": ["page"], "id": "contextParent", "title": "Page Refresher" });
+            chrome.contextMenus.create({ "type": "checkbox", "parentId": "contextParent",  "id": "enableReload", "title": "Enable" });
+
+            contextMenuLoaded = true;
+
+            for (const [key, value] of Object.entries(definedIntervals)) {
+                chrome.contextMenus.create({ "type": "radio", "parentId": "contextParent", "id": key, "title": getTimeFormat(value) });
+            }
+
+            chrome.tabs.query({active: true, currentWindow: true, windowType: "normal"}, tab => updateContextState(tab[0].id));
+        });
+    });
+}
+
+
+// *** Updates the checked status of the enableReload context menu based on the reload state for that tab. *** //
+function updateContextState(tabID) {
+
+    if (contextMenuLoaded === true) {
+        (tabIDList[tabID].hasOwnProperty("reloadInfo") ? chrome.contextMenus.update("enableReload", { "checked": true }) : chrome.contextMenus.update("enableReload", { "checked": false }));
+    }
+}
+
+
 // *** Create Reload. *** //
 function createReload(interval) {
 
@@ -261,39 +298,3 @@ function bypassCache(state) {
     });
 }
 
-
-let contextMenuLoaded = false; // track context menu state (on or off); set to false by default
-let contextInterval; // track state of context interval value
-
-// *** Remove any existing context menu and create context menu. *** //
-function addContextMenu() {
-
-    chrome.contextMenus.removeAll(() => {
-        chrome.storage.sync.get(["intervalOne", "intervalTwo", "intervalThree", "intervalFour", "intervalFive"], items => {
-
-            contextInterval = items.intervalOne;
-
-            const definedIntervals = { intervalOne: items.intervalOne, intervalTwo: items.intervalTwo, intervalThree: items.intervalThree, intervalFour: items.intervalFour, intervalFive: items.intervalFive };
-
-            chrome.contextMenus.create({ "contexts": ["page"], "id": "contextParent", "title": "Page Refresher" });
-            chrome.contextMenus.create({ "type": "checkbox", "parentId": "contextParent",  "id": "enableReload", "title": "Enable" });
-
-            contextMenuLoaded = true;
-
-            for (const [key, value] of Object.entries(definedIntervals)) {
-                chrome.contextMenus.create({ "type": "radio", "parentId": "contextParent", "id": key, "title": getTimeFormat(value) });
-            }
-
-            chrome.tabs.query({active: true, currentWindow: true, windowType: "normal"}, tab => updateContextState(tab[0].id));
-        });
-    });
-}
-
-
-// *** Updates the checked status of the enableReload context menu based on the reload state for that tab. *** //
-function updateContextState(tabID) {
-
-    if (contextMenuLoaded === true) {
-        (tabIDList[tabID].hasOwnProperty("reloadInfo") ? chrome.contextMenus.update("enableReload", { "checked": true }) : chrome.contextMenus.update("enableReload", { "checked": false }));
-    }
-}
