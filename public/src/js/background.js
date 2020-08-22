@@ -125,12 +125,6 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         case "bypassCache":
             bypassCache(request.state);
             break;
-        case "blockReloadFromOptions":
-            blockReloadFromOptions(request.tabID, request.state);
-            break;
-        case "bypassCacheFromOptions":
-            bypassCacheFromOptions(request.tabID, request.state);
-            break;
         case "enableContext":
             addContextMenu();
             break;
@@ -265,20 +259,6 @@ function bypassCache(state) {
 
         chrome.runtime.sendMessage({greeting: "loadRows"});
     });
-}
-
-
-// *** Block meta refreshes and automatic reloads. *** //
-function blockReloadFromOptions(tabID, state) {
-
-    tabIDList[tabID]["blockReload"] = state;
-    (tabIDList[tabID]["blockReload"] ? chrome.tabs.executeScript(tabID, { code: "window.stop();" }) : chrome.tabs.reload(tabID));
-}
-
-
-// *** Bypass local cache. *** //
-function bypassCacheFromOptions(tabID, state) {
-    tabIDList[tabID]["bypassCache"] = state;
 }
 
 

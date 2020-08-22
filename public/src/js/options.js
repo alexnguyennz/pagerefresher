@@ -1,7 +1,7 @@
 // *************** // 
 // *** IMPORTS *** //
 // *************** //
-import { $, getTimeFormat, urlCheck } from "./global.js";
+import { $, getTimeFormat } from "./global.js";
 
 
 // ********************** // 
@@ -59,16 +59,12 @@ function loadRows() {
                         row.insertCell(-1).appendChild(document.createTextNode(formattedTitle));
                         row.insertCell(-1).appendChild(document.createTextNode(formattedURL));
                         row.insertCell(-1).appendChild(document.createTextNode(getTimeFormat(tabIDList[tabID]["reloadInfo"]["interval"])));
-                        row.insertCell(-1).innerHTML = '<input value="' + tabID + '" id="' + tabID + '-block" type="checkbox" name="block-reload-button">';
-                        row.insertCell(-1).innerHTML = '<input value="' + tabID + '" id="' + tabID + '-bypass" type="checkbox" name="bypass-cache-button">';
+
+                        (tabIDList[tabID]["blockReload"] ? row.insertCell(-1).innerHTML = '&#10004;' : row.insertCell(-1).innerHTML = '&#x2718;');
+                        (tabIDList[tabID]["bypassCache"] ? row.insertCell(-1).innerHTML = '&#10004;' : row.insertCell(-1).innerHTML = '&#x2718;');
+
                         row.insertCell(-1).innerHTML = '<button value="' + tabID + '" name="go-button" class="go-button" title="Go to tab"></button>' +
                         '<button value="' + tabID + '" name="quit-button" class="quit-button" title="Close reload">&#10060;</button>';
-
-                        // check checkboxes based on option states
-                        (tabIDList[tabID]["blockReload"] ? $(tabID + "-block").checked = true : $(tabID + "-block").checked = false);
-                        (tabIDList[tabID]["bypassCache"] ? $(tabID + "-bypass").checked = true : $(tabID + "-bypass").checked = false);
-
-                        urlCheck(tabIDList[tabID]["tabURL"], tabID + "-block");
 
                         createTabOptions();
                     }
@@ -95,9 +91,9 @@ function loadRows() {
                 } else {
                     row.insertCell(-1).appendChild(document.createTextNode("-"));
                 }
-    
-                row.insertCell(-1).innerHTML = '<input value="' + tabID + '" id="' + tabID + '-block" type="checkbox" name="block-reload-button">';
-                row.insertCell(-1).innerHTML = '<input value="' + tabID + '" id="' + tabID + '-bypass" type="checkbox" name="bypass-cache-button">';
+     
+                (tabIDList[tabID]["blockReload"] ? row.insertCell(-1).innerHTML = '&#10004;' : row.insertCell(-1).innerHTML = '&#x2718;');
+                (tabIDList[tabID]["bypassCache"] ? row.insertCell(-1).innerHTML = '&#10004;' : row.insertCell(-1).innerHTML = '&#x2718;');
     
                 if (tabIDList[tabID].hasOwnProperty("reloadInfo") === true) {
                     row.insertCell(-1).innerHTML = '<button value="' + tabID + '" name="go-button" class="go-button" title="Go to tab"></button>' +
@@ -105,12 +101,6 @@ function loadRows() {
                 } else {
                     row.insertCell(-1).innerHTML = '<button value="' + tabID + '" name="go-button" class="go-button" title="Go to tab"></button>';
                 }
-    
-                // check checkboxes based on option states
-                (tabIDList[tabID]["blockReload"] ? $(tabID + "-block").checked = true : $(tabID + "-block").checked = false);
-                (tabIDList[tabID]["bypassCache"] ? $(tabID + "-bypass").checked = true : $(tabID + "-bypass").checked = false);
-    
-                urlCheck(tabIDList[tabID]["tabURL"], tabID + "-block");
     
                 createTabOptions();
             }
@@ -132,26 +122,8 @@ function reloadsExist(tabIDList) {
 function createTabOptions() {
 
     // ELEMENT REFERENCES
-    const blockReloadButton = document.getElementsByName("block-reload-button");
-    const bypassCacheButton = document.getElementsByName("bypass-cache-button");
     const goButton = document.getElementsByName("go-button");
     const quitButton = document.getElementsByName("quit-button");
-
-    // for each 'blockReload' checkbox on click, toggle the blockReload state for the corresponding tab
-    blockReloadButton.forEach(item => {
-        item.addEventListener("click", event => {
-            const tabID = parseInt(event.target.value); // store tabID separately so we can remove the row before deleting the reload; convert to integer because .id stores it as string
-            chrome.runtime.sendMessage({greeting: "blockReloadFromOptions", tabID: tabID, state: event.target.checked});
-        });
-    });
-
-    // for each 'bypassCache' checkbox on click, toggle the bypassCache state for the corresponding tab
-    bypassCacheButton.forEach(item => {
-        item.addEventListener("click", event => {
-            const tabID = parseInt(event.target.value);
-            chrome.runtime.sendMessage({greeting: "bypassCacheFromOptions", tabID: tabID, state: event.target.checked});
-        });
-    });
 
     // for each 'Go' button on click, make the corresponding tab the active tab
     goButton.forEach(item => {
