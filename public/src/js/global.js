@@ -21,7 +21,7 @@ export function getTimeFormat(totalSeconds) {
 // *** Check if the URL matches a forbidden one, and disable the relevant checkbox. *** //
 export function urlCheck(tabURL, elementID) {
 
-    const urlArray = ["chrome://", "chrome-extension://", "https://chrome.google.com/webstore"];
+    const urlArray = ["chrome://", "chrome-extension://", "https://chrome.google.com/webstore", "edge://", "extension://"];
     const check = urlArray.some(el => tabURL.includes(el));
 
     (check ? $(elementID).disabled = true: $(elementID).disabled = false);
