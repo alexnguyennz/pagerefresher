@@ -1,6 +1,6 @@
 # Page Refresher
 
-A simple per-tab automatic page refresher/reloader for Google Chrome.
+A simple per-tab automatic page refresher/reloader for Google Chrome and Microsoft Edge.
 
 ##### Features
 
