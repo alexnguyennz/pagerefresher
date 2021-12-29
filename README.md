@@ -2,6 +2,8 @@
 
 A simple per-tab automatic page refresher/reloader for Google Chrome and Microsoft Edge.
 
+[Chrome store page](https://chrome.google.com/webstore/detail/page-refresher/hedjdjlfiijoibijchekancllfeppchp) 
+
 ##### Features
 
   - tab based (tab ID) reloads
