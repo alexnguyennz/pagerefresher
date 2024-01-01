@@ -8,41 +8,46 @@
 
 <body>
 
-    <div class="interval-block">
-        <label for="minuteInterval" class="interval-label">Minutes: </label>
-        <input type="number" id="minuteInterval" name="customInterval" class="interval-inputs" min="0" value="0">
+<div class="interval-block">
+    <label for="minuteInterval" class="interval-label">Minutes: </label>
+    <input type="number" id="minuteInterval" name="customInterval" class="interval-inputs" min="0" value="0">
 
-        <label for="secondInterval" class="interval-label">Seconds: </label>
-        <input type="number" id="secondInterval" name="customInterval" class="interval-inputs" min="0" value="0">
-    </div>
-    
-    <div id="reload-toggle">
-        <input type="checkbox" id="option">
-        <div class="knobs"><span>OFF</span></div>
-        <div class="layer"></div>
-    </div>
+    <label for="secondInterval" class="interval-label">Seconds: </label>
+    <input type="number" id="secondInterval" name="customInterval" class="interval-inputs" min="0" value="0">
+</div>
 
-    <div class="custom-intervals">
-        <input type="radio" id="intervalOne" name="definedInterval" class="definedInterval"><label for="intervalOne"></label>
-        <input type="radio" id="intervalTwo" name="definedInterval" class="definedInterval"><label for="intervalTwo"></label>
-        <input type="radio" id="intervalThree" name="definedInterval" class="definedInterval"><label for="intervalThree"></label>
-        <input type="radio" id="intervalFour" name="definedInterval" class="definedInterval"><label for="intervalFour"></label>
-        <input type="radio" id="intervalFive" name="definedInterval" class="definedInterval"><label for="intervalFive"></label>
-    </div>
-  
-    <hr>
+<div id="reload-toggle">
+    <input type="checkbox" id="option">
+    <div class="knobs"><span>OFF</span></div>
+    <div class="layer"></div>
+</div>
 
-    <div>
-        <input type="checkbox" id="blockReload">
-        <label for="blockReload">Block Auto Reloading</label>
-    </div>
+<div class="custom-intervals">
+    <input type="radio" id="intervalOne" name="definedInterval" class="definedInterval"><label
+        for="intervalOne"></label>
+    <input type="radio" id="intervalTwo" name="definedInterval" class="definedInterval"><label
+        for="intervalTwo"></label>
+    <input type="radio" id="intervalThree" name="definedInterval" class="definedInterval"><label
+        for="intervalThree"></label>
+    <input type="radio" id="intervalFour" name="definedInterval" class="definedInterval"><label
+        for="intervalFour"></label>
+    <input type="radio" id="intervalFive" name="definedInterval" class="definedInterval"><label
+        for="intervalFive"></label>
+</div>
 
-    <div>
-        <input type="checkbox" id="bypassCache">
-        <label for="bypassCache">Bypass Local Cache</label>
+<hr>
 
-        <a id="option-link" href="/options.html" target="_blank" alt="Settings page" title="Go to settings"></a>
-    </div>
+<div>
+    <input type="checkbox" id="blockReload">
+    <label for="blockReload">Block Auto Reloading</label>
+</div>
+
+<div>
+    <input type="checkbox" id="bypassCache">
+    <label for="bypassCache">Bypass Local Cache</label>
+
+    <a id="option-link" href="/options.html" target="_blank" alt="Settings page" title="Go to settings"></a>
+</div>
 
 <script type="module" src="./src/js/popup.js"></script>
 
