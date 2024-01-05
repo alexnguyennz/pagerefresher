@@ -1,16 +1,23 @@
-.interval-block { column-count: 2; }
+.interval-block {
+    column-count: 2;
+}
 
-.custom-intervals { column-count: 5; }
+.custom-intervals {
+    column-count: 5;
+}
 
-.custom-intervals input { margin-left: 10px; }
+.custom-intervals input {
+    margin-left: 10px;
+}
 
-.custom-intervals label { margin-left: 5px; }
+.custom-intervals label {
+    margin-left: 5px;
+}
 
 input[type=number] {
     width: 75px;
     padding: 10px;
 }
-
 
 /* *** TOGGLE *** */
 .knobs, .layer {
@@ -21,7 +28,9 @@ input[type=number] {
     left: 0;
 }
 
-.knobs { z-index: 2; }
+.knobs {
+    z-index: 2;
+}
 
 #reload-toggle {
     position: relative;
@@ -75,19 +84,28 @@ input[type=number] {
     z-index: 1;
 }
 
-#reload-toggle #option:checked + .knobs span { color: #4e4e4e; }
+#reload-toggle #option:checked + .knobs span {
+    color: #4e4e4e;
+}
 
 #reload-toggle #option:checked + .knobs:before {
     left: 105px;
     background-color: #03A9F4;
 }
 
-#reload-toggle #option:checked + .knobs:after { color: #fff; }
+#reload-toggle #option:checked + .knobs:after {
+    color: #fff;
+}
 
-#reload-toggle #option:checked ~ .layer { background-color: #ebf7fc; }
+#reload-toggle #option:checked ~ .layer {
+    background-color: #ebf7fc;
+}
+
 /* *** END TOGGLE *** */
 
-hr { margin-bottom: 4px; }
+hr {
+    margin-bottom: 4px;
+}
 
 #option-link {
     float: right;

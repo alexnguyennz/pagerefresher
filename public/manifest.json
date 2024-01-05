@@ -1,7 +1,7 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Page Refresher",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "author": "Alex Nguyen",
   "description": "A simple per-tab automatic page refresher/reloader.",
   "icons": {
@@ -10,16 +10,17 @@
     "128": "./src/img/logo-128.png"
   },
   "background": {
-    "page": "background.html",
-    "persistent": false
+    "service_worker": "src/js/background.js",
+    "type": "module"
   },
   "permissions": [
     "storage",
     "contextMenus",
     "tabs",
-    "activeTab"
+    "activeTab",
+    "scripting"
   ],
-  "browser_action": {
+  "action": {
     "default_title": "Page Refresher",
     "default_popup": "popup.html"
   },
